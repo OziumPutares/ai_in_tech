@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashcard Website</title>
+    <style>
+        body {
+            display: flex;
+            min-height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #f8f8f8;
+            padding: 20px;
+            border-right: 2px solid #ddd;
+        }
+
+        .sidebar h2 {
+            margin-top: 0;
+        }
+
+        .flashcard-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .flashcard {
+            width: 300px;
+            height: 200px;
+            border-radius: 10px;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .flashcard:hover {
+            transform: translateY(-5px);
+        }
+
+        .ai-section {
+            margin-top: 20px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 80px;
+            margin-bottom: 10px;
+            padding: 10px;
+            resize: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #ai-response {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar for AI prompts -->
+    <div class="sidebar">
+        <h2>AI Prompting</h2>
+        <textarea id="prompt-input" placeholder="Type your prompt..."></textarea>
+        <button onclick="sendPrompt()">Send</button>
+        <div id="ai-response"></div>
+    </div>
+
+    <!-- Main Flashcard area -->
+    <div class="flashcard-container">
+        <div class="flashcard" onclick="flipCard()">Question 1</div>
+    </div>
+
+    <script>
+        // Flashcard flip logic
+        let isQuestion = true;
+        const flashcard = document.querySelector('.flashcard');
+
+        function flipCard() {
+            if (isQuestion) {
+                flashcard.textContent = 'Answer 1';
+            } else {
+                flashcard.textContent = 'Question 1';
+            }
+            isQuestion = !isQuestion;
+        }
+
+        // AI Prompt handling (using a mock AI response for this demo)
+        function sendPrompt() {
+            const prompt = document.getElementById('prompt-input').value;
+            const responseContainer = document.getElementById('ai-response');
+
+            if (!prompt.trim()) {
+                responseContainer.textContent = 'Please enter a prompt.';
+                return;
+            }
+
+            // Simulate an AI response (in real-world usage, this would be an API call)
+            const mockAIResponse = `AI Response to: "${prompt}"`;
+            responseContainer.textContent = mockAIResponse;
+        }
+    </script>
+
+</body>
+</html>
