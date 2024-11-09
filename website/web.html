@@ -5,24 +5,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flashcard Website</title>
     <style>
+        /* Global Styles */
         body {
             display: flex;
             min-height: 100vh;
             margin: 0;
             font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
         }
 
+        /* Sidebar Styles */
         .sidebar {
             width: 250px;
             background-color: #f8f8f8;
             padding: 20px;
             border-right: 2px solid #ddd;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
         }
 
         .sidebar h2 {
             margin-top: 0;
+            font-size: 1.5rem;
+            color: #333;
         }
 
+        /* AI Prompting Section */
+        textarea {
+            width: 100%;
+            height: 80px;
+            margin-bottom: 20px; /* Increased gap from the bottom */
+            padding: 10px;
+            resize: none;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #ai-response {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+            min-height: 50px;
+        }
+
+        /* Flashcard Container Styles */
         .flashcard-container {
             flex: 1;
             display: flex;
@@ -43,44 +88,12 @@
             font-size: 1.5rem;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             cursor: pointer;
-            transition: transform 0.3s;
+            transition: transform 0.3s, background-color 0.3s;
         }
 
         .flashcard:hover {
             transform: translateY(-5px);
-        }
-
-        .ai-section {
-            margin-top: 20px;
-        }
-
-        textarea {
-            width: 100%;
-            height: 80px;
-            margin-bottom: 10px;
-            padding: 10px;
-            resize: none;
-        }
-
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #0056b3;
-        }
-
-        #ai-response {
-            margin-top: 10px;
-            padding: 10px;
-            background-color: #e9ecef;
-            border-radius: 5px;
+            background-color: #e0e0e0;
         }
     </style>
 </head>
@@ -115,15 +128,15 @@
 
         // AI Prompt handling (using a mock AI response for this demo)
         function sendPrompt() {
-            const prompt = document.getElementById('prompt-input').value;
+            const prompt = document.getElementById('prompt-input').value.trim();
             const responseContainer = document.getElementById('ai-response');
 
-            if (!prompt.trim()) {
+            if (!prompt) {
                 responseContainer.textContent = 'Please enter a prompt.';
                 return;
             }
 
-            // Simulate an AI response (in real-world usage, this would be an API call)
+            // Simulate an AI response (in a real application, you'd fetch this from an API)
             const mockAIResponse = `AI Response to: "${prompt}"`;
             responseContainer.textContent = mockAIResponse;
         }
@@ -131,3 +144,4 @@
 
 </body>
 </html>
+
